@@ -3,8 +3,11 @@
  * Template Name: Tumblr User Activity
  */
 
+$tumblr_username = 'amycodes';
+
 function readTumblr() {
-    $json_url = "http://amycodes.tumblr.com/rss";
+    
+    $json_url = "http://" . $tumblr_username . ".tumblr.com/rss";
     $ch = curl_init($json_url);
     $options = array(
         CURLOPT_RETURNTRANSFER => true,
@@ -59,7 +62,7 @@ get_header();
                             if ( count($tumblr_post['category']) > 0 ) {
                                 $tag_links = array();
                                 foreach ( $tumblr_post['category'] as $category ) {
-                                    $tag_links[] = "<a href='http://amycodes.tumblr.com/tagged/" . str_replace(' ', '-', $category) . "'>$category</a>";
+                                    $tag_links[] = "<a href='http://" . $tumblr_username . ".tumblr.com/tagged/" . str_replace(' ', '-', $category) . "'>$category</a>";
                                 }
                         ?>
                             <footer class="entry-footer">
