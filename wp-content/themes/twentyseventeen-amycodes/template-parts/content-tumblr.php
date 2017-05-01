@@ -5,8 +5,8 @@
 
 $tumblr_username = 'amycodes';
 
-function readTumblr() {
-    
+function readTumblr($tumblr_username) {
+
     $json_url = "http://" . $tumblr_username . ".tumblr.com/rss";
     $ch = curl_init($json_url);
     $options = array(
@@ -23,7 +23,7 @@ function readTumblr() {
     return $tumblr_feed;
 }
 
-$tumblr_feed = readTumblr();
+$tumblr_feed = readTumblr($tumblr_username);
 
 function make_one_column($classes) {
     $idx = array_search('page-two-column', $classes);
@@ -58,7 +58,7 @@ get_header();
                         <div class='entry-content'>
                             <p><?php echo $tumblr_post['description']; ?></p>
                         </div>
-                        <?php 
+                        <?php
                             if ( count($tumblr_post['category']) > 0 ) {
                                 $tag_links = array();
                                 foreach ( $tumblr_post['category'] as $category ) {
